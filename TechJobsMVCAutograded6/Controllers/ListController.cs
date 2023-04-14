@@ -37,13 +37,30 @@ public class ListController : Controller
         ViewBag.locations = JobData.GetAllLocations();
         ViewBag.positionTypes = JobData.GetAllPositionTypes();
         ViewBag.skills = JobData.GetAllCoreCompetencies();
-
+        
         return View();
     }
 
     // TODO #2 - Complete the Jobs action method
     public IActionResult Jobs(string column, string value)
     {
+
+        List<Job> jobs;
+
+        if (value == "View All") 
+        {
+            ViewBag.title = "All Jobs";
+            jobs = JobData.FindAll();
+        }
+
+        else
+        {
+            ViewBag.title = $"{column} {value}";
+            jobs = JobData.FindByColumnAndValue(column, value);
+        }
+
+        ViewBag.jobs = jobs;
+
         return View();
     }
 }
