@@ -25,7 +25,7 @@ public class SearchController : Controller
         List<Job> jobs = new List<Job>();
 
 
-        if (searchType == "All" || searchType == null)
+        if (searchType == "All" || searchTerm == null)
         {
             ViewBag.title = "All Jobs";
             jobs = JobData.FindAll();
